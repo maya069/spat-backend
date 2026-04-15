@@ -12,15 +12,11 @@ urlpatterns = [
     path('api/auth/register/',         RegisterView.as_view()),
     path('api/auth/me/',               MeView.as_view()),
     path('api/auth/update-profil/',    UpdateProfilView.as_view()),
-    path('api/logi/', include('logi.urls')),
-<<<<<<< HEAD
-    path('api/', include('logements.urls')), 
-    path('api/employes/', include('employes.urls')), # ✅ Correction : ajout des routes logements
+    path('api/',                       include('logements.urls')), 
+    path('api/employes',               include('employes.urls')),
+        
 ]
 
-# ✅ Correction : servir les fichiers media en développement
+# Servir les fichiers media en développement
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-=======
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
->>>>>>> origin/main
