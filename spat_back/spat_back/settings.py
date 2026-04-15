@@ -5,13 +5,23 @@ from corsheaders.defaults import default_headers
 import dj_database_url
 import os
 
+<<<<<<< HEAD
+=======
+# ─────────────────────────────────────────────────────────────
+# BASE
+# ─────────────────────────────────────────────────────────────
+>>>>>>> origin/main
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ─────────────────────────────────────────────────────────────
 # SÉCURITÉ
 # ─────────────────────────────────────────────────────────────
 SECRET_KEY = config('SECRET_KEY', default='change-moi-en-production')
+<<<<<<< HEAD
 DEBUG = config('DEBUG', default=False, cast=bool)  # ✅ Correction : False par défaut en production
+=======
+DEBUG = config('DEBUG', default=True, cast=bool)
+>>>>>>> origin/main
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -34,13 +44,20 @@ INSTALLED_APPS = [
 
     # Packages
     'rest_framework',
+<<<<<<< HEAD
     'rest_framework_simplejwt',  # ✅ Correction : ajout de simplejwt
+=======
+    
+>>>>>>> origin/main
 
     # Apps
     'accounts',
     'logements',
     'logi',
+<<<<<<< HEAD
     'employes',
+=======
+>>>>>>> origin/main
 ]
 
 # ─────────────────────────────────────────────────────────────
@@ -66,15 +83,22 @@ CORS_ALLOWED_ORIGINS = [
     "https://spat-app.vercel.app",
 ]
 
+<<<<<<< HEAD
 # ✅ Correction : suppression de CORS_ALLOW_ALL_ORIGINS = True
 # Cela rendait CORS_ALLOWED_ORIGINS inutile et ouvrait l'API à tous les domaines
+=======
+CORS_ALLOW_ALL_ORIGINS = True
+>>>>>>> origin/main
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'Authorization',
 ]
 
+<<<<<<< HEAD
 CORS_ALLOW_CREDENTIALS = True  # ✅ Ajout : nécessaire pour les cookies/tokens
 
+=======
+>>>>>>> origin/main
 # ─────────────────────────────────────────────────────────────
 # DRF + JWT
 # ─────────────────────────────────────────────────────────────
@@ -120,6 +144,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'spat_back.wsgi.application'
 
+<<<<<<< HEAD
 DATABASE_URL = config('DATABASE_URL', default='')
 
 if DATABASE_URL and DATABASE_URL.startswith('postgres'):
@@ -137,7 +162,23 @@ else:
     }
 
 
+=======
+# ─────────────────────────────────────────────────────────────
+# BASE DE DONNÉES
+# ─────────────────────────────────────────────────────────────
+DATABASE_URL = config(
+    'DATABASE_URL',
+    default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+)
 
+DATABASES = {
+    'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+}
+>>>>>>> origin/main
+
+# ─────────────────────────────────────────────────────────────
+# MOTS DE PASSE
+# ─────────────────────────────────────────────────────────────
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -158,6 +199,7 @@ USE_TZ = True
 # ─────────────────────────────────────────────────────────────
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+<<<<<<< HEAD
 
 # ✅ Correction : utilisation de STORAGES au lieu de STATICFILES_STORAGE (déprécié Django 5.x)
 STORAGES = {
@@ -173,6 +215,10 @@ STORAGES = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+=======
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+>>>>>>> origin/main
 # ─────────────────────────────────────────────────────────────
 # DIVERS
 # ─────────────────────────────────────────────────────────────
